@@ -198,28 +198,30 @@ const resultOutput = (lumpSumInvestmentMonth, lumpSumInvestmentAmount, debitOrde
 
       numberOfMonthsForDebitToBeValid = remaindingMonthsFromLumpSumMonth;
 
+      let suggestedAmount = Math.floor((differenceAfterLumpSum / numberOfMonthsForDebitToBeValid) * 100) / 100;
+
       if (debitOrderAmount === 0) {
-        const suggestedAmount = Math.floor((differenceAfterLumpSum / numberOfMonthsForDebitToBeValid) * 100) / 100;
         addDebitOrder = ` (at a max amount of R${suggestedAmount} per month)`;
       }
 
       let monthToBeValid;
 
       if (numberOfMonthsForDebitToBeValid === 0) {
-        monthToBeValid = numberOfMonthsForDebitToBeValid;
+        addDebitOrder = ' (at any amount up to R2500 per month)';
+        year = '2021';
+        earliestPermissibleDebitOrderStartMonth = 3;
       } else {
         monthToBeValid = financialYearArray[12 - numberOfMonthsForDebitToBeValid];
+
+        if (monthToBeValid.value === 1 || monthToBeValid.value === 2) {
+          year = '2021';
+        } else {
+          year = '2020';
+        }
+  
+  
+        earliestPermissibleDebitOrderStartMonth = monthToBeValid.value;
       }
-
-
-      if (monthToBeValid.value === 1 || monthToBeValid.value === 2) {
-        year = '2021';
-      } else {
-        year = '2020';
-      }
-
-
-      earliestPermissibleDebitOrderStartMonth = monthToBeValid.value;
 
 
       result = { totalContributions, earliestPermissibleDebitOrderStartMonth };
