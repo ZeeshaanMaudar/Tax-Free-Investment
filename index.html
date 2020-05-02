@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tax Free Investment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+  </head>
+  <body class="container">
+    <h2>Tax Free Investment</h2>
+    <h4>Tax Year: 1 March 2020 - 28 February 2021</h4>
+
+    <div class='cards-wrapper'>
+      <form id='tax-free-form' name="tax-free-form" onsubmit="submitForm(); return false">
+
+        <div class="input-fields-wrapper">
+  
+          <div class="group-wrapper">
+  
+            <div class="form-group group-style">
+              <label class="h6" for="lumpSumMonth">Select Lump Sum Month</label>
+              <div>
+                <select name="lumpSumMonth" id="lump-sum-month"></select>
+              </div>
+              <small class="text-muted">(Please note that January and February refer to 2021)</small>
+            </div>
+    
+            <div class="form-group group-style">
+              <label class="h6" for="orderDebitMonth">Select Debit Order Starting Month</label>
+              <div>
+                <select name="orderDebitMonth" id="order-debit-month"></select>
+              </div>
+              <small class="text-muted">(Please note that January and February refer to 2021)</small>
+            </div>
+            
+          </div>
+    
+          <div class="group-wrapper">
+    
+            <div class="form-group group-style">
+              <label class="h6" for="lumpSumAmount">Lump Sum Amount:</label>
+              <div>
+                <input type="number" id="lump-sum-amount" name="lumpSumAmount" placeholder=" eg: 10,000" step="0.01">
+              </div>
+              <small class="text-muted">(Cannot be greater than R30,000)</small>
+            </div>
+            
+            <div class="form-group group-style">
+              <label class="h6" for="debitOrderAmount">Debit Order Amount:</label>
+              <div>
+                <input type="number" id="debit-order-amount" name="debitOrderAmount" placeholder=" eg: 1,500" step="0.01">
+              </div>
+              <small class="text-muted">(Cannot be greater than R2,500)</small>
+            </div>
+    
+          </div>
+  
+        </div>
+  
+        <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Submit">
+      </form>
+  
+      <div id="results">
+        <div class="pre-submit">
+          <h2>Submit form to see results</h2>
+        </div>
+      </div>
+    </div>
+
+    <h4>List of assumptions based on understanding of the case study:</h4>
+    <ul>
+      <li>Investment <strong class="text-info">has to start</strong> with a Lump Sum if Lump Sum Amount has been chosen</li>
+      <li>Lump Sum amount can only be a maximum of <strong class="text-info">R30,000</strong></li>
+      <li>Lump Sum amount can only be made once. Assumption that we <strong class="text-info">cannot put more lump sum amount even for the next tax year</strong></li>
+      <li>Debit Order Month <strong class="text-info">has to start</strong> at least one month after Lump Sum month if opted</li>
+      <li>Debit Order can be <strong class="text-info">optional</strong> but once started, continues indefinitely (i.e consider following tax year)</li>
+      <li>Debit Order amount can only be a <strong class="text-info">maximum of R2500</strong> irrespective of when it is starting throughout the year because over the following tax year, that amount will continue to occur per month, thus R2500 is the maximum to go indefinitely in order to never go above the threshold of <strong class="text-info">R30000 for total yearly contributions</strong></li>
+      <li>Given that drop downs should only contain months from January to December, the page has thus been built only for <strong class="text-info">1 tax year</strong></li>
+      <li>Due to request for a simple page, this was built using <strong class="text-info">JavaScript, HTML, CSS and Bootstrap</strong>, instead of preferred tech stack which is <strong class="text-info">Reactjs</strong></li>
+    </ul>
+    <script src="./main.js"></script>
+  </body>
+</html>
