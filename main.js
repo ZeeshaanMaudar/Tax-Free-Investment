@@ -125,10 +125,6 @@ const resultOutput = (lumpSumInvestmentMonth, lumpSumInvestmentAmount, debitOrde
 
   const totalContributions = lumpSumInvestmentAmount + totalDebitOrderUntilEndOfYear;
 
-  console.log(lumpSumInvestmentAmount);
-  console.log(totalDebitOrderUntilEndOfYear);
-  console.log(444, lumpSumInvestmentAmount + totalDebitOrderUntilEndOfYear)
-
   let result;
   let earliestPermissibleDebitOrderStartMonth = 3;
 
@@ -284,14 +280,9 @@ submitForm = () => {
   const selectOrderDebitMonth = document.getElementById('order-debit-month');
   
   const lumpSumInvestmentMonth = parseInt(selectLumpSumMonth.options[selectLumpSumMonth.selectedIndex].value);
-  console.log('lumpSumInvestmentMonth: ', lumpSumInvestmentMonth)
   const debitOrderStartMonth = parseInt(selectOrderDebitMonth.options[selectOrderDebitMonth.selectedIndex].value);
-  console.log('debitOrderStartMonth: ', debitOrderStartMonth)
   const lumpSumInvestmentAmount = document.getElementById('lump-sum-amount').value ? Number(document.getElementById('lump-sum-amount').value) : 0;
-  console.log(lumpSumInvestmentAmount)
-
   const debitOrderAmount = document.getElementById('debit-order-amount').value ? Number(document.getElementById('debit-order-amount').value) : 0;
-  console.log(debitOrderAmount)
 
   if (lumpSumInvestmentAmount <= 0 && debitOrderAmount <= 0) {
     return alert(`Please choose an amount for the Lump Sum Amount and/or Debit Order Amount`);
