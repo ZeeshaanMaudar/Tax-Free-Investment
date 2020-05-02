@@ -47,6 +47,41 @@ populateLumpSumMonths();
 populateDebitOrderMonths();
 
 
+addResultToDom = ({ result, applicationStatus, year, addDebitOrder }) => {
+  let resultTitleElement = document.createElement('h4');
+  let resultTitleNode = document.createTextNode('Results Output:');
+  resultTitleElement.appendChild(resultTitleNode);
+
+
+  let applicationStatusElement = document.createElement('p');
+  
+  let resultClass = 'text-success';
+  let successState = 'Successful';
+
+  if(!applicationStatus) {
+    resultClass = 'text-danger';
+    successState = 'Rejected';
+  }
+
+  applicationStatusElement.innerHTML=`<strong>Application:</strong> <strong class=${resultClass}>${successState}</strong>`
+
+  let totalContributionsElement = document.createElement('p');
+  totalContributionsElement.id = 'totalContributions';
+  totalContributionsElement.innerHTML=`<strong>Total Contributions:</strong> <strong class=${resultClass}>R${result.totalContributions}</strong>`;
+
+
+  let earliestElement = document.createElement('p');
+  earliestElement.id = 'earliestPermissibleDebitOrderStartMonth';
+
+  earliestElement.innerHTML=`<strong>Earliest permissible debit order start month:</strong> ${result.earliestPermissibleDebitOrderStartMonth}, i.e: ${yearObject[result.earliestPermissibleDebitOrderStartMonth]} ${year}${addDebitOrder}`;
+
+  document.getElementById('results').appendChild(resultTitleElement);
+  document.getElementById('results').appendChild(applicationStatusElement);
+  document.getElementById('results').appendChild(totalContributionsElement);
+  document.getElementById('results').appendChild(earliestElement);
+}
+
+
 numberOfMonthsUntilEndOfYearFromLumpSumMonth = lumpSumInvestmentMonth => {
   let numberOfMonths = 11;
 
@@ -111,8 +146,6 @@ isDebitOrderMonthValid = (lumpSumInvestmentAmount, lumpSumInvestmentMonth, debit
   }
 
 };
-
-
 
 
 const resultOutput = (lumpSumInvestmentMonth, lumpSumInvestmentAmount, debitOrderStartMonth, debitOrderAmount) => {
@@ -230,41 +263,9 @@ const resultOutput = (lumpSumInvestmentMonth, lumpSumInvestmentAmount, debitOrde
 
   }
 
-  console.log(result);
+  console.log('result: ', result);
 
-
-  let resultTitleElement = document.createElement('h4');
-  let resultTitleNode = document.createTextNode('Results Output:');
-  resultTitleElement.appendChild(resultTitleNode);
-
-
-  let applicationStatusElement = document.createElement('p');
-  
-  let resultClass = 'text-success';
-  let successState = 'Successful';
-
-  if(!applicationStatus) {
-    resultClass = 'text-danger';
-    successState = 'Rejected';
-  }
-
-  applicationStatusElement.innerHTML=`<strong>Application:</strong> <strong class=${resultClass}>${successState}</strong>`
-
-  let totalContributionsElement = document.createElement('p');
-  totalContributionsElement.id = 'totalContributions';
-  totalContributionsElement.innerHTML=`<strong>Total Contributions:</strong> <strong class=${resultClass}>R${result.totalContributions}</strong>`;
-
-
-  let earliestElement = document.createElement('p');
-  earliestElement.id = 'earliestPermissibleDebitOrderStartMonth';
-
-  earliestElement.innerHTML=`<strong>Earliest permissible debit order start month:</strong> ${result.earliestPermissibleDebitOrderStartMonth}, i.e: ${yearObject[result.earliestPermissibleDebitOrderStartMonth]} ${year}${addDebitOrder}`;
-
-  document.getElementById('results').appendChild(resultTitleElement);
-  document.getElementById('results').appendChild(applicationStatusElement);
-  document.getElementById('results').appendChild(totalContributionsElement);
-  document.getElementById('results').appendChild(earliestElement);
-
+  addResultToDom({ result, applicationStatus, year, addDebitOrder });
 }
 
 
