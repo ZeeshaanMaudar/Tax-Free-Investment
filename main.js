@@ -73,7 +73,7 @@ addResultToDom = ({ result, applicationStatus, year, addDebitOrder }) => {
   let earliestElement = document.createElement('p');
   earliestElement.id = 'earliestPermissibleDebitOrderStartMonth';
 
-  earliestElement.innerHTML=`<strong>Earliest permissible debit order start month:</strong> ${result.earliestPermissibleDebitOrderStartMonth}, i.e: ${yearObject[result.earliestPermissibleDebitOrderStartMonth]} ${year}${addDebitOrder}`;
+  earliestElement.innerHTML=`<strong>Earliest permissible debit order start month:</strong> <span class="text-info">${result.earliestPermissibleDebitOrderStartMonth}, i.e: ${yearObject[result.earliestPermissibleDebitOrderStartMonth]} ${year}${addDebitOrder}</span>`;
 
   document.getElementById('results').appendChild(resultTitleElement);
   document.getElementById('results').appendChild(applicationStatusElement);
